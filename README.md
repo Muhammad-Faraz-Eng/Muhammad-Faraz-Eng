@@ -11,7 +11,7 @@ Currently contributing to production Kubernetes-deployed data infrastructure at 
 ## 🌐 Connect With Me
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/muhammad-faraz-410050319/)
-[![Email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:farazshokat6@gmail.com)
+[![Email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:muhammadfarazeng@gmail.com)
 
 📱 **Phone:** 0321-7508045
 
