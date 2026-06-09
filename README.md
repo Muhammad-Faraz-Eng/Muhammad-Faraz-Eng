@@ -2,9 +2,9 @@
 
 **Muhammad Faraz** — Data Engineer
 
-Results-oriented Data Engineer with hands-on experience building **production-grade, end-to-end data pipelines** on Azure and AWS. I specialize in medallion architecture design, real-time streaming with Kafka and Azure Event Hubs, workflow orchestration with Apache Airflow, and data transformation with dbt. Passionate about configuration-driven pipeline design, data quality automation, and integrating AI/RAG capabilities into analytics platforms.
+Results-oriented Data Engineer with hands-on experience building **production-grade, end-to-end data pipelines** on Azure and AWS. I specialize in medallion architecture design, real-time streaming with PySpark and Azure Event Hubs, workflow orchestration with Apache Airflow, cloud ETL with Azure Data Factory and AWS Glue, and data transformation with dbt. Passionate about configuration-driven pipeline design, data quality at scale, and integrating AI/RAG capabilities into analytics platforms.
 
-Currently contributing to production Kubernetes-deployed data infrastructure at **ExpertFlow**, where I work on Airflow-orchestrated ETL platforms, Docker image hardening, CVE remediation, and multi-database pipeline reliability.
+Currently contributing to production Kubernetes-deployed data infrastructure at **ExpertFlow**, working on Airflow-orchestrated ETL platforms, Docker image hardening, CVE remediation, and multi-database pipeline reliability.
 
 ---
 
@@ -19,48 +19,48 @@ Currently contributing to production Kubernetes-deployed data infrastructure at 
 
 ## 🚀 Featured Projects
 
-### 1. End-to-End Production Data Platform
-**Stack:** Python · Apache Airflow · dbt · Azure Data Lake Storage · LangChain · Ollama · Docker · PostgreSQL
+### 1. [Databricks-DBT End-to-End Data Engineering](https://github.com/Muhammad-Faraz-Eng/Databricks-DBT-End-to-End-Data-Engineering-Project)
+**Stack:** PySpark · Databricks · dbt · Delta Lake · Unity Catalog · Azure Data Lake Storage · Autoloader
 
-Designed and deployed a complete **Medallion Architecture (Bronze → Silver → Gold)** data platform ingesting from SQL Server and REST APIs.
+Built a complete **Medallion Architecture (Bronze → Silver → Gold)** pipeline using PySpark Streaming and Databricks Autoloader.
 
-- Built YAML-driven configuration system to eliminate hardcoding and enable extensibility for new data sources
-- Developed automated schema validation framework with type casting, deduplication, and quarantine logic for invalid records — achieved **100% data quality compliance**
-- Delivered a **star-schema warehouse** (4 fact/dimension tables) with 4 analytics dashboards
-- Integrated **LangChain + Ollama RAG system** enabling natural language querying over the data platform
-
----
-
-### 2. Uber End-to-End Data Engineering Project
-**Stack:** Python · FastAPI · Azure Event Hubs · Faker · Jinja2 · Docker
-
-Built a real-time ride data engineering platform simulating and streaming Uber ride events at scale.
-
-- Engineered a data generation module producing realistic ride confirmations with dynamic pricing (base fare, distance, surge), 10+ US cities, and 5 vehicle types (UberX, UberXL, Comfort, Black, UberPOOL)
-- Implemented **Azure Event Hubs streaming pipeline** for real-time ingestion enabling downstream analytics and ML workloads
-- Built a **FastAPI** application as the pipeline interface with REST endpoints and Jinja2-templated web UI
+- Autoloader automatically detects and ingests new files from multiple sources; Bronze layer stores raw data as-is
+- Silver layer enforces data quality (deduplication, type fixing, calculated fields); Gold layer implements dbt star schema with **SCD Type 2** for full historical tracking when source data changes
+- Databricks **Unity Catalog** provides data governance and lineage documentation; automated scheduling delivers production-ready analytics datasets
 
 ---
 
-### 3. RetailFlow – Config-Driven ETL Pipeline
-**Stack:** Python · Apache Airflow · PostgreSQL · Apache Superset · Docker
+### 2. [RetailPulse – Full-Stack Data Platform](https://github.com/Muhammad-Faraz-Eng/RetailPulse-End-to-End-Medallion-Data-Engineering-Pipeline-ADF-dbt-Airflow-RAG-)
+**Stack:** Python · Azure Data Factory · Apache Airflow · dbt · Azure Data Lake Storage · Azure SQL · Metabase · LangChain · Ollama
 
-Architected a modular, production-safe ETL system for retail analytics.
+A complete retail data platform from ingestion to AI-powered querying.
 
-- Designed **Medallion Architecture** (Bronze/Silver/Gold) with OOP principles and YAML-driven config — new sources can be added with zero code changes
-- Enforced **idempotent loads** using PostgreSQL UPSERT on business keys; orchestrated scheduling, retries, and dependencies with Airflow DAGs
-- Integrated **Apache Superset** for real-time dashboards: Sales by Region, Revenue by Category, Daily Trends
+- YAML-config-driven Bronze ingestion via **Azure Data Factory** with schema validation, Parquet storage in ADLS, and quarantine logic for bad records
+- Silver layer cleans and standardizes; Gold layer uses **dbt star schema** (fct_sales, dim_products, dim_stores); **Apache Airflow** orchestrates the full DAG with retries and failure alerts
+- Delivered **4 Metabase dashboards** (Sales Overview, Product Analytics, Store Performance, Currency Insights)
+- Integrated **LangChain + Ollama RAG** system enabling plain-English business queries at zero API cost (local model)
 
 ---
 
-### 4. E-commerce Fraud Detection Streaming Pipeline
-**Stack:** Python · Apache Kafka · Apache Airflow · dbt · PostgreSQL · Docker Compose
+### 3. [Real-Time Healthcare Data Engineering Pipeline](https://github.com/Muhammad-Faraz-Eng/End-to-End-Real-Time-Healthcare-Data-Engineering-Pipeline)
+**Stack:** Python · Azure Event Hubs · Databricks · PySpark Streaming · Azure Synapse Analytics · Power BI · SCD Type 2
 
-Built a containerized, production-style streaming fraud detection pipeline.
+Real-time patient flow tracking system with instant dashboard updates.
 
-- Developed Kafka producer/consumer apps to stream real-time transactions into PostgreSQL; coordinated by an Airflow DAG managing consumer launch, quality validation, and multi-layer dbt transformations as DockerOperator tasks
-- Built a **3-layer dbt project**: Raw (JSON flattening) → Staging (incremental SCD Type 1 & 2) → Marts (dimensional model + fraud summary view)
-- Fully containerized stack (Postgres, Zookeeper, Kafka, Airflow) via Docker Compose — **100% reproducible** across environments
+- Python generates patient flow events (arrival, ER transfer, ICU admission) → **Azure Event Hubs** → **Databricks PySpark Streaming** processes Bronze/Silver/Gold layers instantly
+- **SCD Type 2** preserves full patient movement history; **Azure Synapse Analytics** star schema (fct_patient_events, dim_departments, dim_doctors, dim_patient_info) powers complex analytics
+- **Power BI dashboards** refreshing every minute: live patient locations, department capacity, wait times, and flow trends — enabling proactive capacity planning
+
+---
+
+### 4. [AWS Glue ETL Pipeline – Masterclass](https://github.com/Muhammad-Faraz-Eng/AWS-Glue-Masterclass-2026-End-to-End-ETL-Pipeline)
+**Stack:** AWS Glue · Amazon S3 · PySpark · AWS Glue Data Catalog · Parquet · Event-Driven Triggers · CTAS
+
+End-to-end AWS-native ETL platform with automated, event-driven processing.
+
+- Architected a **3-layer S3 data lake** (Raw / Processed / Analytics) with date-and-region partitioning; built **Glue Data Catalog** documenting all datasets and column metadata for company-wide discoverability
+- PySpark ETL scripts handle null removal, type fixing, joins, and Parquet output; **CTAS** and external table patterns for SQL-based transformations
+- Event-driven **S3 triggers** fire ETL automatically on new file arrival — zero manual intervention, pay-per-minute Glue pricing for cost-efficient batch workloads
 
 ---
 
@@ -69,10 +69,10 @@ Built a containerized, production-style streaming fraud detection pipeline.
 
 Production-grade Kubernetes-deployed data pipeline platform at ExpertFlow.
 
-- Resolved **Kubernetes CrashLoopBackOff** failures in the Transflux data pipeline service (Helm 5.1.0) — root causes: incorrect MySQL client_flag in connection URLs and Airflow 3.x import path regressions
-- Conducted **CVE remediation** using Grype/Trivy scans: pinned redshift-connector, asyncssh, idna to patched versions; produced architectural recommendations (multi-stage builds, distroless base images, pip-compile lock files)
-- Fixed **DAG import failures** from wildcard import class shadowing, YAML template parsing bug, and SSL FileNotFoundError from empty MySQL cert secrets via ConfigMap rebuild
-- Resolved **dbt-mysql 1.7.0 / dbt-core ≥1.9.0** version incompatibility using `--no-deps` with manual transitive dependency installation
+- Resolved **Kubernetes CrashLoopBackOff** failures in Transflux data pipeline service (Helm 5.1.0) — root causes: incorrect MySQL client_flag and Airflow 3.x import path regressions
+- Conducted **CVE remediation** using Grype/Trivy: pinned redshift-connector, asyncssh, idna to patched versions; produced hardening report recommending multi-stage builds and distroless base images
+- Fixed **DAG import failures** from wildcard import class shadowing, YAML template parsing bug, and SSL FileNotFoundError via ConfigMap rebuild
+- Resolved **dbt-mysql 1.7.0 / dbt-core ≥1.9.0** incompatibility using `--no-deps` with manual transitive dependency installation
 
 ---
 
@@ -105,12 +105,14 @@ Production-grade Kubernetes-deployed data pipeline platform at ExpertFlow.
 ![dbt](https://img.shields.io/badge/dbt-FF694B?style=for-the-badge&logo=dbt&logoColor=white)
 ![PySpark](https://img.shields.io/badge/PySpark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
 ![AWS Glue](https://img.shields.io/badge/AWS%20Glue-4B9CD3?style=for-the-badge&logo=amazonaws&logoColor=white)
+![Azure Data Factory](https://img.shields.io/badge/Azure%20Data%20Factory-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
 
 ### 🗄️ Databases & Storage
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Amazon S3](https://img.shields.io/badge/Amazon%20S3-FF9900?style=for-the-badge&logo=amazons3&logoColor=white)
 
 ### 🐍 Languages
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
