@@ -64,15 +64,16 @@ End-to-end AWS-native ETL platform with automated, event-driven processing.
 
 ---
 
-### 5. ExpertFlow – Production Data Platform (cx-data-platform)
-**Stack:** Apache Airflow 3.2.1 · Python 3.13 · Kubernetes · Helm · Docker · dbt-mysql · Debian 12
+### 5. ExpertFlow – Production Data Platform (Job Role Contribution)
+**Stack:** Apache Airflow 3.2.1 · Python 3.13 · Kubernetes · Helm · ConfigMaps · Docker · dbt-mysql · GitLab CI · Trivy · Grype
 
 Production-grade Kubernetes-deployed data pipeline platform at ExpertFlow.
 
-- Resolved **Kubernetes CrashLoopBackOff** failures in Transflux data pipeline service (Helm 5.1.0) — root causes: incorrect MySQL client_flag and Airflow 3.x import path regressions
-- Conducted **CVE remediation** using Grype/Trivy: pinned redshift-connector, asyncssh, idna to patched versions; produced hardening report recommending multi-stage builds and distroless base images
-- Fixed **DAG import failures** from wildcard import class shadowing, YAML template parsing bug, and SSL FileNotFoundError via ConfigMap rebuild
-- Resolved **dbt-mysql 1.7.0 / dbt-core ≥1.9.0** incompatibility using `--no-deps` with manual transitive dependency installation
+- **Kubernetes & Helm:** Deployed and maintained the Transflux data platform on Kubernetes (`expertflow` namespace, Helm 5.1.0); debugged CrashLoopBackOff failures by tracing pod logs and container exit codes, identifying and correcting an incorrect MySQL `client_flag` in connection URLs and a misconfigured Helm values override
+- **ConfigMap Debugging:** Rebuilt ConfigMaps to resolve an SSL `FileNotFoundError` caused by empty MySQL certificate secret mounts; authored `sed`-based fixes across config templates to inject correct certificate paths at pod runtime, eliminating SSL failures across all replicas
+- **Platform Migration:** Led migration from Airflow 2.x to **Airflow 3.2.1** on Python 3.13 / Debian 12; updated deprecated import paths, resolved DB schema incompatibilities, fixed DAG import failures from wildcard import class shadowing, and patched a YAML template parsing bug with a runtime `isinstance` guard
+- **Security (Trivy & Grype in GitLab CI):** Integrated container vulnerability scans into the GitLab CI pipeline; triaged reports, pinned redshift-connector, asyncssh, and idna to patched versions, added suppression entries for accepted-risk CVEs; produced a hardening report recommending multi-stage Docker builds, distroless base images, and pip-compile lock files
+- **dbt Compatibility:** Resolved dbt-mysql 1.7.0 / dbt-core ≥1.9.0 version incompatibility using `--no-deps` with manual transitive dependency resolution, restoring the full dbt transformation pipeline
 
 ---
 
@@ -122,6 +123,8 @@ Production-grade Kubernetes-deployed data pipeline platform at ExpertFlow.
 ### 🐳 DevOps & Infrastructure
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Helm](https://img.shields.io/badge/Helm-0F1689?style=for-the-badge&logo=helm&logoColor=white)
+![GitLab CI](https://img.shields.io/badge/GitLab%20CI-FC6D26?style=for-the-badge&logo=gitlab&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
